@@ -5,10 +5,11 @@ import MovieCard from "./components/MovieCard.jsx";
 import { useDebounce } from "./hooks/Debounce.js";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MovieDetail from "./components/MovieDetail.jsx";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-console.log("API Key:", import.meta.env.VITE_TMDB_API_KEY);
 
 const fetchMovies = async (query) => {
   const endpoint = query
@@ -41,34 +42,49 @@ const App = () => {
   });
 
   return (
-    <main>
-      <div className="pattern" />
-      <div className="wrapper">
-        <header>
-          <img src="./hero-img.png" alt="Hero Banner" />
-          <h1>
-            Find <span className="text-gradient">Movies</span> You'll Enjoy
-            Without Hassle
-          </h1>
-        </header>
-        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <h1>{searchTerm}</h1>
-        <section>
-          <h2 className="mt-[20px]">All movies</h2>
-          {isLoading ? (
-            <Spinner />
-          ) : error ? (
-            <p className="text-red-500">{error.message}</p>
-          ) : (
-            <ul className="grid grid-cols-4 gap-4">
-              {movies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-            </ul>
-          )}
-        </section>
-      </div>
-    </main>
+    <Router future={{ v7_startTransition: true }}>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <div className="pattern" />
+                <div className="wrapper">
+                  <header>
+                    <img src="./hero-img.png" alt="Hero Banner" />
+                    <h1>
+                      Find <span className="text-gradient">Movies</span> You'll
+                      Enjoy Without Hassle
+                    </h1>
+                  </header>
+                  <Search
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                  />
+                  <h1>{searchTerm}</h1>
+                  <section>
+                    <h2 className="mt-[20px]">All movies</h2>
+                    {isLoading ? (
+                      <Spinner />
+                    ) : error ? (
+                      <p className="text-red-500">{error.message}</p>
+                    ) : (
+                      <ul className="grid grid-cols-4 gap-4">
+                        {movies.map((movie) => (
+                          <MovieCard key={movie.id} movie={movie} />
+                        ))}
+                      </ul>
+                    )}
+                  </section>
+                </div>
+              </div>
+            }
+          />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+        </Routes>
+      </main>
+    </Router>
   );
 };
 export default App;
