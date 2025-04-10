@@ -16,7 +16,7 @@ const fetchMovies = async (query) => {
         query
       )}&api_key=${API_KEY}`
     : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
-const data = await response.json()
+const data = await endpoint.json()
     return data.results;
 
 };
