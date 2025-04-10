@@ -1,10 +1,9 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import Search from "./components/Search.jsx";
 import Spinner from "./components/Spinner.jsx";
 import MovieCard from "./components/MovieCard.jsx";
 import { useDebounce } from "./hooks/Debounce.js";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MovieDetail from "./components/MovieDetail.jsx";
 
@@ -17,14 +16,9 @@ const fetchMovies = async (query) => {
         query
       )}&api_key=${API_KEY}`
     : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
-  try {
-    const { data } = await axios.get(endpoint);
+const data = await response.json()
     return data.results;
-  } catch (error) {
-    throw new Error(
-      error.response?.data?.status_message || "Failed to fetch movies"
-    );
-  }
+
 };
 
 const App = () => {
