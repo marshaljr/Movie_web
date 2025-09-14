@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -14,24 +13,27 @@ const fetchMovieDetail = async (id) => {
   );
   return data;
 };
+
 const fetchSimilarMovies = async (id) => {
   const { data } = await axios.get(
     `${API_BASE_URL}/movie/${id}/similar?api_key=${API_KEY}`
   );
   return data.results;
 };
+
 const MovieDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const {
-    data: movies,
+    data: movie,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["movies", id],
+    queryKey: ["movie", id],
     queryFn: () => fetchMovieDetail(id),
   });
+
   const {
     data: similarMovies,
     isLoading: loadingSimilar,
@@ -41,52 +43,52 @@ const MovieDetail = () => {
     queryFn: () => fetchSimilarMovies(id),
   });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-500">Error:{error.message}</p>;
+  if (isLoading) return <Spinner />;
+  if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="movie-detail w-full flex flex-row m-10">
-      <div className="movie-card w-full flex flex-col items-center justify-center sm:flex-row lg:justify-around  p-4 md:p-10 gap-4 md:gap-10">
+    <div className="movie-detail w-full flex flex-col md:flex-col lg:flex-col p-4 md:p-10 gap-8">
+      <div className="movie-card flex flex-col md:flex-row gap-6 md:gap-10 items-center justify-center">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`}
-          className="opacity-60 w-full xs:w-[50%] md:w-1/3 h-auto object-contain rounded-lg"
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+          className="opacity-60 w-full sm:w-[60%] md:w-1/3 h-auto object-contain rounded-lg"
         />
-        <div className="flex flex-col items-center justify-center sm:justify-center sm:items-center md:items-center md:justify:center lg:items-center lg:justify-center gap-6">
+        <div className="flex flex-col gap-4 md:gap-6 items-center md:items-start text-center md:text-left">
           <h1 className="text-xl md:text-3xl font-bold text-white">
-            {movies.title}
+            {movie.title}
           </h1>
-          <p className="text-sm px-10 md:px-1 md:text-base lg:max-w-[50rem] text-white letter-spacing-1px">
-            {movies.overview}
+          <p className="text-sm md:text-base text-white max-w-lg">
+            {movie.overview}
           </p>
-          <p className="text-white mt-8">Release Date: {movies.release_date}</p>
+          <p className="text-white">Release Date: {movie.release_date}</p>
           <div className="flex items-center gap-2 text-white">
             <img
               src="/star.svg"
               alt="star icon"
               className="h-6 w-6 hover:scale-110 transition-transform duration-300"
             />
-            <span>Rating: {movies.vote_average}</span>
+            <span>Rating: {movie.vote_average}</span>
           </div>
-          <p className="text-white">Language: {movies.original_language}</p>
+          <p className="text-white">Language: {movie.original_language}</p>
           <button
             onClick={() => navigate("/")}
-            className="mt-8 bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-600 transition hover:scale-105 hover:cursor-pointer">
+            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition hover:scale-105 mt-2">
             Back to Home
           </button>
         </div>
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-xl md:text-2xl font-semibold text-white mb-4 text-center text-center px-20 py-10">
+      <div className="mt-10">
+        <h2 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
           Similar Movies
         </h2>
-
         {loadingSimilar ? (
           <Spinner />
         ) : errorSimilar ? (
           <p className="text-red-500">{errorSimilar.message}</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center md:px-8 md:mx-8 md:gap-8 lg:mx-14 lg:px-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center sm:px-6 md:px-8 lg:px-14">
             {similarMovies.map((movie) => (
               <div
                 key={movie.id}

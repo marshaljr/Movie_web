@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -23,6 +22,7 @@ const MovieCard = ({
         <h3 className="text-sm md:text-base font-semibold truncate max-w-[180px] hover:scale-110 transition-transform duration-300">
           {title}
         </h3>
+        {/* Tooltip for long titles */}
         <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-10">
           {title}
         </span>

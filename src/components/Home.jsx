@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import { useState } from "react";
 import Search from "../components/Search.jsx";
 import Spinner from "../components/Spinner.jsx";
@@ -15,6 +14,7 @@ const fetchMovies = async (query) => {
         query
       )}&api_key=${API_KEY}`
     : `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&api_key=${API_KEY}`;
+
   const response = await fetch(endpoint);
   const data = await response.json();
   return data.results;
@@ -45,8 +45,10 @@ const Home = () => {
             Without Hassle
           </h1>
         </header>
+
         <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <h1>{searchTerm}</h1>
+
         <section>
           <h2 className="mt-8 mb-4 text-xl md:text-2xl">All movies</h2>
 
