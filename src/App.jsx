@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import Search from "./components/Search.jsx";
 import Spinner from "./components/Spinner.jsx";
@@ -82,4 +83,24 @@ const App = () => {
     </Router>
   );
 };
+=======
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import Home from "./components/Home.jsx";
+import MovieDetail from "./components/MovieDetail.jsx";
+
+const App = () => {
+  return (
+    <Router future={{ v7_startTransition: true }}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+};
+
+>>>>>>> 1931de0 (Update grid for responsive sizing)
 export default App;

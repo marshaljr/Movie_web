@@ -11,9 +11,17 @@
   will-change: filter;
   transition: filter 300ms;
 }
+<<<<<<< HEAD
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+=======
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+>>>>>>> 1931de0 (Update grid for responsive sizing)
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -22,6 +30,10 @@
   from {
     transform: rotate(0deg);
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1931de0 (Update grid for responsive sizing)
   to {
     transform: rotate(360deg);
   }
@@ -39,4 +51,8 @@
 
 .read-the-docs {
   color: #888;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1931de0 (Update grid for responsive sizing)

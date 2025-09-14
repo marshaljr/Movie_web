@@ -11,7 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
 
+=======
+.env
+>>>>>>> 1931de0 (Update grid for responsive sizing)
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
