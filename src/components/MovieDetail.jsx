@@ -47,18 +47,20 @@ const MovieDetail = () => {
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="movie-detail w-full flex flex-col md:flex-col lg:flex-col p-4 md:p-10 gap-8">
-      <div className="movie-card flex flex-col md:flex-row gap-6 md:gap-10 items-center justify-center">
+    <div className="movie-detail w-full flex flex-col md:flex-col lg:flex-col p-4 md:p-10 gap-8 justify-center items-center bg-gradient-to-b from-black via-gray-900 to-black min-h-screen">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center justify-center">
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
-          className="opacity-60 w-full sm:w-[60%] md:w-1/3 h-auto object-contain rounded-lg"
+          className="opacity-60 w-2/3 sm:w-1/3 h-auto object-contain rounded-lg mx-auto hover:scale-105
+            transition-transform
+            duration-400"
         />
-        <div className="flex flex-col gap-4 md:gap-6 items-center md:items-start text-center md:text-left">
+        <div className="flex flex-col gap-4 md:gap-6 items-center justify-center text-center">
           <h1 className="text-xl md:text-3xl font-bold text-white">
             {movie.title}
           </h1>
-          <p className="text-sm md:text-base text-white max-w-lg">
+          <p className="text-sm md:text-base text-white max-w-lg px-8">
             {movie.overview}
           </p>
           <p className="text-white">Release Date: {movie.release_date}</p>
@@ -66,7 +68,7 @@ const MovieDetail = () => {
             <img
               src="/star.svg"
               alt="star icon"
-              className="h-6 w-6 hover:scale-110 transition-transform duration-300"
+              className="h-6 w-6 hover:scale-120 transition-transform duration-300"
             />
             <span>Rating: {movie.vote_average}</span>
           </div>
@@ -88,7 +90,7 @@ const MovieDetail = () => {
         ) : errorSimilar ? (
           <p className="text-red-500">{errorSimilar.message}</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center sm:px-6 md:px-8 lg:px-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20 p-4 justify-items-center">
             {similarMovies.map((movie) => (
               <div
                 key={movie.id}

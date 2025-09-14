@@ -39,7 +39,13 @@ const Home = () => {
       <div className="pattern" />
       <div className="wrapper">
         <header>
-          <img src="./hero-img.png" alt="Hero Banner" />
+          <img
+            src="./hero-img.png"
+            alt="Hero Banner"
+            className="hover:scale-125
+            transition-transform
+            duration-800"
+          />
           <h1>
             Find <span className="text-gradient">Movies</span> You&#39;ll Enjoy
             Without Hassle
@@ -57,7 +63,7 @@ const Home = () => {
           ) : error ? (
             <p className="text-red-500">{error.message}</p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 justify-items-center lg:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4 justify-items-center lg:gap-16">
               {movies.map((movie) => (
                 <div
                   key={movie.id}

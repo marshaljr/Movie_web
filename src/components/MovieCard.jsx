@@ -22,7 +22,6 @@ const MovieCard = ({
         <h3 className="text-sm md:text-base font-semibold truncate max-w-[180px] hover:scale-110 transition-transform duration-300">
           {title}
         </h3>
-        {/* Tooltip for long titles */}
         <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover:block bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap z-10">
           {title}
         </span>
@@ -31,7 +30,7 @@ const MovieCard = ({
             <img
               src="/star.svg"
               alt="star icon"
-              className="h-4 w-4 hover:scale-110 transition-transform duration-300"
+              className="h-4 w-4 hover:scale-120 transition-transform duration-300"
             />
             <p>{vote_average ? vote_average.toFixed(1) : "N/A"}</p>
           </div>
