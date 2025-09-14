@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import React from "react";
 
-=======
->>>>>>> 1931de0 (Update grid for responsive sizing)
 const Spinner = () => {
   return (
     <div role="status">

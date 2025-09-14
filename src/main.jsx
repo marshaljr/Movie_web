@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { StrictMode } from "react";
-=======
->>>>>>> 1931de0 (Update grid for responsive sizing)
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";

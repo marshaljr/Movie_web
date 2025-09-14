@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import React from "react";
-=======
 import PropTypes from "prop-types";
->>>>>>> 1931de0 (Update grid for responsive sizing)
 import { Link } from "react-router-dom";
 
 const MovieCard = ({
@@ -16,27 +13,6 @@ const MovieCard = ({
   },
 }) => {
   return (
-<<<<<<< HEAD
-    <Link to={`/movie/${id}`} className="movie-card">
-      <img
-        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt={title}
-        className="w-full h-auto rounded-lg"
-      />
-      <div className="mt-4">
-        <h3>{title}</h3>
-        <div className="content">
-          <div className="rating">
-            <img src="/star.svg" alt="star icon" />
-            <p>{vote_average ? vote_average.toFixed(1) : "N/A"}</p>
-          </div>
-          <span>.</span>
-          <p className="lang">{original_language}</p>
-          <span>.</span>
-          <p className="year">
-            {release_date ? release_date.split("-")[0] : "N/A"}
-          </p>
-=======
     <Link to={`/movie/${id}`} className="movie-card w-full p-2">
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -63,14 +39,12 @@ const MovieCard = ({
           <p>{original_language}</p>
           <span>•</span>
           <p>{release_date ? release_date.split("-")[0] : "N/A"}</p>
->>>>>>> 1931de0 (Update grid for responsive sizing)
         </div>
       </div>
     </Link>
   );
 };
-<<<<<<< HEAD
-=======
+
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -81,6 +55,5 @@ MovieCard.propTypes = {
     original_language: PropTypes.string,
   }).isRequired,
 };
->>>>>>> 1931de0 (Update grid for responsive sizing)
 
 export default MovieCard;
