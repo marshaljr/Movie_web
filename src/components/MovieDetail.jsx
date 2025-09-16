@@ -20,6 +20,12 @@ const fetchSimilarMovies = async (id) => {
   );
   return data.results;
 };
+const fetchMovieVideos = async (id) => {
+  const { data } = await axios.get(
+    `${API_BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`
+  );
+  return data.results;
+};
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -41,6 +47,14 @@ const MovieDetail = () => {
   } = useQuery({
     queryKey: ["similarMovies", id],
     queryFn: () => fetchSimilarMovies(id),
+  });
+  const {
+    data: videos,
+    isLoading: loadingVideos,
+    error: errorVideos,
+  } = useQuery({
+    queryKey: ["movieVideos", id],
+    queryFn: () => fetchMovieVideos(id),
   });
 
   if (isLoading) return <Spinner />;
@@ -79,6 +93,29 @@ const MovieDetail = () => {
             Back to Home
           </button>
         </div>
+      </div>
+
+      <div className="mt-10 w-full flex flex-col items-center">
+        <h2 className="text-xl md:text-2xl font-semibold text-white mb-6 text-center">
+          Trailer
+        </h2>
+        {loadingVideos ? (
+          <Spinner />
+        ) : errorVideos ? (
+          <p className="text-red-500">{errorVideos.message}</p>
+        ) : videos?.length > 0 ? (
+          <iframe
+            width="860"
+            height="415"
+            src={`https://www.youtube.com/embed/${videos[0].key}`}
+            title="YouTube trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="rounded-lg shadow-lg max-w-full"></iframe>
+        ) : (
+          <p className="text-white">No trailer available</p>
+        )}
       </div>
 
       <div className="mt-10">
