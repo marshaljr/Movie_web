@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-400 text-center py-6 mt-10">
       <p className="text-sm">
-        © {new Date().getFullYear()} Movie App by{" "}
+        © {new Date().getFullYear()} Movie Site by{" "}
         <a
           href="https://vercel.com/marshal-rams-projects"
           target="_blank"
