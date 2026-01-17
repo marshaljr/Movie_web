@@ -8,7 +8,7 @@ const Search = ({ searchTerm, setSearchTerm }) => {
         <input
           className="w-full px-4 py-2 rounded-lg focus:border-blue-400 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 hover:border-blue-400 hover:ring-2 hover:ring-blue-400 hover:ring-opacity-50 transition-all duration-400 outline-none"
           type="text"
-          placeholder="Search through thousand of movies"
+          placeholder="Search through thousand of movies..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
